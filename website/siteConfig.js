@@ -23,9 +23,9 @@ const users = [
 const siteConfig = {
   title: 'Lightrun Documentation', // Title for your website.
   tagline: 'The shift-left observability debugging tool made for developers',
-  url: "https://spinningrachel.github.io/docs.lightrun.com" /* your website url */,
-  editUrl: "https://github.com/spinningrachel/docs.lightrun.com/",
-  baseUrl: "/origin/" /* base url for your project */,
+  url: "https://spinningrachel.github.io/lightrun/" /* your website url */,
+  editUrl: "https://github.com/spinningrachel/lightrun",
+  baseUrl: "/" /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
