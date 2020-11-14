@@ -25,7 +25,7 @@ const siteConfig = {
   tagline: 'The shift-left observability debugging tool made for developers',
   url: "https://spinningrachel.github.io/lightrun/" /* your website url */,
   editUrl: "https://github.com/spinningrachel/lightrun",
-  baseUrl: "/" /* base url for your project */,
+  baseUrl: "/docs/" /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
