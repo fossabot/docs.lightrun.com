@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Troubleshooting · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Troubleshooting {#_troubleshooting}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Troubleshooting · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Troubleshooting {#_troubleshooting}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Troubleshooting</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.comtroubleshooting.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Troubleshooting</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="troubleshooting-_troubleshooting"></a><a href="#troubleshooting-_troubleshooting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Troubleshooting {#_troubleshooting}</h1>
+<p>Common issues include the following.</p>
+<p><strong>Agents don't show up in IDE.</strong></p>
+<p>Try:</p>
+<ul>
+<li><p>Restarting the IDE</p></li>
+<li><p>Logging in again</p></li>
+</ul>
+<p><strong>Username Field is Disabled in Login.</strong></p>
+<p>Try:</p>
+<ul>
+<li><p>Make sure the backend server is reachable</p></li>
+<li><p>Make sure the URL/port were typed correctly</p></li>
+<li><p>Try deleting and retyping a character in the URL to trigger
+validation again</p></li>
+<li><p>Make sure there are no hidden characters/spaces before/after the URL</p></li>
+</ul>
+<p><img src="img/source-version-warning-notification.png" alt="Notification warning - &quot;Lightrun actions in this file were submitted
+against a different
+version...​&quot;"></p>
+<p>This notification warning pops up when one or more actions in the open
+file were set against different source code. This might happen if you
+set an action after making edits to the file, or if an action was set to
+the same file by another person whose source code differs from yours.</p>
+<p>This warning can be ignored, as it doesn't block the activation of the
+action. However, actions set on mismatching source code can cause
+unexpected behavior, so it is recommended to solve the issue.</p>
+<p>To solve the issue, make sure that the application you are debugging is
+the same as the code in your editor (or the editor of whoever set the
+action). If the problem persists, you can disable the warning by
+clicking &quot;Don't Show this Again&quot; in the notification panel (Notice
+that disabling this feature will also affect the actions the way other
+people view the actions you set).</p>
+<h2><a class="anchor" aria-hidden="true" id="certificates-issues-_certificates_issues"></a><a href="#certificates-issues-_certificates_issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Certificates issues {#_certificates_issues}</h2>
+<h3><a class="anchor" aria-hidden="true" id="self-signed-certificate-is-blocked-_self_signed_certificate_is_blocked"></a><a href="#self-signed-certificate-is-blocked-_self_signed_certificate_is_blocked" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Self-signed certificate is blocked {#_self_signed_certificate_is_blocked}</h3>
+<p>The troubleshooting may vary depends on either browser (also browser
+version) or OS, and the following cover most of the popular browsers and
+operating systems</p>
+<ol>
+<li><p><a href="https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate">Getting Chrome to accept self-signed localhost certificate (per
+Chrome
+version)</a></p></li>
+<li><p><a href="https://unix.stackexchange.com/questions/90450/adding-a-self-signed-certificate-to-the-trusted-list">Ubuntu: Adding a self-signed certificate to the &quot;trusted
+list&quot;</a></p></li>
+<li><p><a href="https://www.andrewconnell.com/blog/updated-creating-and-trusting-self-signed-certs-on-macos-and-chrome/">Creating and Trusting Self-Signed Certs on MacOS and
+Chrome/Safari</a></p></li>
+<li><p><a href="https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68">How to trust a self-signed SSL certificate in IE11 and
+Edge</a></p></li>
+<li><p><a href="https://www.pico.net/kb/how-do-you-get-chrome-to-accept-a-self-signed-certificate">How do you get Chrome to accept a self-signed certificate on
+Win10</a></p></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/serveintegrations"><span class="arrow-prev">← </span><span>Integrations from the server</span></a><a class="docs-next button" href="/docs/licenses"><span>Lightrun license use</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#certificates-issues-_certificates_issues">Certificates issues {#_certificates_issues}</a><ul class="toc-headings"><li><a href="#self-signed-certificate-is-blocked-_self_signed_certificate_is_blocked">Self-signed certificate is blocked {#_self_signed_certificate_is_blocked}</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

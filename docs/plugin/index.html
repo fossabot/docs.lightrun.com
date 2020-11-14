@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Using Lightrun in your workflow · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Plugin - User Guide {#_plugin_user_guide}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Using Lightrun in your workflow · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Plugin - User Guide {#_plugin_user_guide}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using Lightrun</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.complugin.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Using Lightrun in your workflow</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="plugin---user-guide-_plugin_user_guide"></a><a href="#plugin---user-guide-_plugin_user_guide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugin - User Guide {#_plugin_user_guide}</h1>
+<p>This section provides an overview of the features available in
+Lightrun's IntelliJ plugin.</p>
+<h2><a class="anchor" aria-hidden="true" id="logging-in-_logging_in"></a><a href="#logging-in-_logging_in" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Logging In {#_logging_in}</h2>
+<p>After installing Lightrun we can expand the side drawer by clicking on
+it. We can then login from the IDE using either the button on the top of
+the side drawer or the right click menu option:</p>
+<p><img src="img/login-guide.jpg" alt="Launch the Login Dialog"></p>
+<p>::: {.note}
+Before logging-in we need to register in the backend server web UI
+:::</p>
+<p>This triggers the following login dialog:</p>
+<p><img src="img/login-dialog.png" alt="Login Dialog"></p>
+<p>Once we log in successfully the status button on the top right corner
+should turn green:</p>
+<p><img src="img/login-success.png" alt="Status Button"></p>
+<p>At this point the right click context menu changes and should include
+additional options as such:</p>
+<p><img src="img/context-menu.png" alt="Right Click Context Menu"></p>
+<h2><a class="anchor" aria-hidden="true" id="usage-_usage"></a><a href="#usage-_usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage {#_usage}</h2>
+<p>::: {.important}
+The plugin will hide options if there are no agents connected to the
+backend and no tags
+:::</p>
+<p>On the right side we see the Lightrun side drawer. It includes a tree of
+agents/tags and the actions connected to them:</p>
+<p><img src="img/drawer.png" alt="The Lightrun Drawer"></p>
+<p>::: {.tip}
+This drawer can be folded to save screen real estate
+:::</p>
+<p>The drawer includes all the high level information you might need:</p>
+<p><img src="img/search-annotated.jpg" alt="Search"></p>
+<p>We can search within agents and action below and the list updates
+immediately based on the search query. When we have multiple logs on
+multiple agents this can be very useful.</p>
+<p><img src="img/agent-annotated.jpg" alt="Agent Details"></p>
+<p>We have multiple indicators and capabilities for every agent. Most of
+these are applicable for actions under tags as well so we'll focus only
+on the agent here:</p>
+<ul>
+<li><p>Tags --- this is the list of tags for this agent. Notice that it's
+cropped. To see all the tags we will need to expand the drawer or
+click the details (info) icon to see the list of tags there</p></li>
+<li><p>Details --- shows the information dialog for the agent/action</p></li>
+<li><p>Hide Logs --- Logs might be intrusive in the IDE UI. We can
+fold/hide them using this button. Notice it works recursively and
+will apply to the hierarchy below</p></li>
+<li><p>Pipe Logs --- By default Lightrun logs into the same logger used by
+the host applicaion. However, it has 3 modes: <code>Server Only</code> (the
+default), <code>Plugin Only</code> and <code>Both</code>. When set to <code>Plugin Only</code> or
+<code>Both</code> logs added to this agent will show in the Lightrun console</p></li>
+<li><p>Delete Action --- Allows us to delete an action. Notice that actions
+defined in a tag can be deleted through the tag only</p></li>
+<li><p>Go to Line --- Jumps to the source/line number associated with the
+action</p></li>
+<li><p>Status Indicator --- Indicates the current state of the action. One
+check box indicates the action was submitted to the server. Two
+check boxes indicate that it was received by the agent. Highlighted
+checkboxes indicate that the agent accepted the action and deems it
+valid</p></li>
+<li><p>Log Level Indicator --- Indicates the log level from Info to Error</p></li>
+</ul>
+<p>When we press the details button on an agent we can see the following
+dialog with details about the piping mode, tags etc:</p>
+<p><img src="img/agent-info.png" alt="Agent Info"></p>
+<p>This is the equivalent dialog for a log entry:</p>
+<p><img src="img/action-info.png" alt="Action Info"></p>
+<h3><a class="anchor" aria-hidden="true" id="adding-an-action-_adding_an_action"></a><a href="#adding-an-action-_adding_an_action" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding an Action {#_adding_an_action}</h3>
+<p>All actions are added via the right click menu. Select a specific line
+in the code, right click and select the appropriate action e.g. Log as
+shown here:</p>
+<p><img src="img/new-log.png" alt="Add a Log"></p>
+<p>There are several options in the new/edit log dialog:</p>
+<ul>
+<li><p>Agent --- The agent or tag to which we will bind the action</p></li>
+<li><p>File/Line --- The actions position in the code</p></li>
+<li><p>Format --- This is the actual log string. Notice we can use
+expressions such as <code>My variable is {var}</code> including even method
+invocations such as: <code>Method value: {myMethod() + 5}</code></p></li>
+<li><p>Log Level --- One of &quot;Debug&quot;, &quot;Info&quot;, &quot;Warning&quot; or &quot;Error&quot;.
+We can then filter the logs based on this level</p></li>
+<li><p>Condition --- an expression that limits the action, this is
+effectively the condition of an <code>if</code> statement we can use to limit
+the execution of the action e.g.: <code>myVar % 7 == 0</code> will limit the
+log so it will print only for variables that divide by 7</p></li>
+</ul>
+<p>Once we press OK a log is added to the area above the line:</p>
+<p><img src="img/log-entry.png" alt="Log Entry"></p>
+<p>::: {.tip}
+The picture on the left can be customized the at
+<a href="https://en.gravatar.com/">gravatar.com</a>
+:::</p>
+<p>Clicking the log lets us delete or edit it.</p>
+<p>Almost all of this applies to the other actions supported by Lightrun.
+So we'll review the other options by focusing on how they differ from
+logs.</p>
+<h4><a class="anchor" aria-hidden="true" id="snapshot-breakpoint-_snapshot_breakpoint"></a><a href="#snapshot-breakpoint-_snapshot_breakpoint" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Snapshot (Breakpoint) {#_snapshot_breakpoint}</h4>
+<p>A snapshot is a one time &quot;breakpoint&quot; that doesn't block. It just
+grabs the stack trace and variables then proceeds on its way.</p>
+<p><img src="img/add-snapshot.png" alt="Adding a Snapshot"></p>
+<p>Format and log level aren't needed in snapshots so they're unavailable
+here. However, we have the expression list which lets us pick
+expressions we wish to add to the snapshot.</p>
+<p>The added snapshot is displayed in the gutter on the left side:</p>
+<p><img src="img/snapshot-gutter.png" alt="Snapshot Icon"></p>
+<p>When the snapshot receives a hit it's shown in the bottom area of the
+window in the <em>Lightrun Snapshots</em> area.</p>
+<p><img src="img/snapshot.png" alt="Snapshot Result"></p>
+<p>The snapshot result should be familiar to IntelliJ users as it's based
+on the design of the debugger UI. The navigable stack trace is on the
+left and the variable values are on the right. Watch expressions also
+appear on the right hand side.</p>
+<p>When the snapshot is deleted the content of the captured stack is also
+removed.</p>
+<h4><a class="anchor" aria-hidden="true" id="counter-_counter"></a><a href="#counter-_counter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Counter {#_counter}</h4>
+<p>We often want to know the number of times a specific line of code was
+hit especially in comparison to a different line of code. This can be
+very useful in debugging issues and especially in tracking performance
+problems.</p>
+<p>Counter does just that. It counts every time the given line was reached
+and periodically logs that information to the standard logger.</p>
+<p><img src="img/counter.png" alt="Adding a Counter"></p>
+<p>A counter doesn't have a format but it has a name which is used to in
+the printouts to distinguish one counter from another.</p>
+<p>::: {.tip}
+Counter is impacted by the piping mode, so we can pipe the counter calls
+to the IDE for convenience
+:::</p>
+<h4><a class="anchor" aria-hidden="true" id="set-value-_set_value"></a><a href="#set-value-_set_value" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set-Value {#_set_value}</h4>
+<p>One trick in debugging is the ability to set a variable to a different
+value and force a specific code path. In our case this takes a much
+deeper meaning of patching broken behavior. E.g. if a feature fails and
+it's surrounded by an if statement we might be able to disable that
+feature by setting the value of a variable.</p>
+<p>This is an extremely risky proposition and as such it requires the
+set-value role for a user. Otherwise the feature isn't available or even
+visible.</p>
+<p>When adding a set-value action we define a left side argument which is
+the variable name and a right side element which is the value assigned.
+The latter can be any valid expression including a method invocation.</p>
+<p><img src="img/set-value.png" alt="Adding a Set-Value"></p>
+<p>::: {.important}
+Quotas aren't imposed on set-value operations and as such the
+performance impact can be significant. Use this feature with caution
+:::</p>
+<h2><a class="anchor" aria-hidden="true" id="lightrun-consolelog-piping-_lightrun_consolelog_piping"></a><a href="#lightrun-consolelog-piping-_lightrun_consolelog_piping" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Lightrun Console/Log Piping {#_lightrun_consolelog_piping}</h2>
+<p>Lightrun logs are normally printed into the standard logging framework.
+This is quite valuable as logs can be seen in the context of
+pre-existing log statements which might provide further nuance to solve
+the problem.</p>
+<p>However, in some cases a developer might want to see the log output in
+the IDE. For that we have the Lightrun Console at the bottom of the
+screen:</p>
+<p><img src="img/console.png" alt="Lightrun Console"></p>
+<p>Logs created by Lightrun can be redirected to the console where we can
+search and filter them. To do that we need to define log piping which we
+define on a per-agent basis.</p>
+<p><img src="img/log-piping.png" alt="Log Piping"></p>
+<p>There are 3 levels of log piping:</p>
+<ul>
+<li><p>App</p></li>
+<li><p>Plugin</p></li>
+<li><p>Both</p></li>
+</ul>
+<p>App indicates the logs appear only in the Java application as they do by
+default. They just go to the standard logger.</p>
+<p>Plugin indicates that logs won't show in the app. Instead they will
+display within the console below.</p>
+<p>Both indicates that logs wll appear both in the app and in the plugin.</p>
+<p>::: {.note}
+In order to pipe the logs they need to go from the agent to the backend
+server and to the plugin. This process is batched so logs appear in
+batches and with some delay
+:::</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/tutorial"><span class="arrow-prev">← </span><span>Quick start tutorial</span></a><a class="docs-next button" href="/docs/server"><span>Setting up the Lightrun Backend</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#logging-in-_logging_in">Logging In {#_logging_in}</a></li><li><a href="#usage-_usage">Usage {#_usage}</a><ul class="toc-headings"><li><a href="#adding-an-action-_adding_an_action">Adding an Action {#_adding_an_action}</a></li></ul></li><li><a href="#lightrun-consolelog-piping-_lightrun_consolelog_piping">Lightrun Console/Log Piping {#_lightrun_consolelog_piping}</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

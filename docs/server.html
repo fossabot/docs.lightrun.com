@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setting up the Lightrun Backend · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Management Server {#_management_server}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Setting up the Lightrun Backend · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Management Server {#_management_server}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Lightrun Administration</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.combackend.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Setting up the Lightrun Backend</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="management-server-_management_server"></a><a href="#management-server-_management_server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Management Server {#_management_server}</h1>
+<h2><a class="anchor" aria-hidden="true" id="server-sign-up-_server_sign_up"></a><a href="#server-sign-up-_server_sign_up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Server Sign-up {#_server_sign_up}</h2>
+<p>Now that the backend server is running we need to create a user and
+login. We need to navigate in the browser to the server.</p>
+<p>::: {.note}
+Notice that the URL is <code>https</code> and defaults to port <code>8080</code>. There should
+be a self signed certificate warning from the browser! If you are having
+issues accessing the server from your browser due to a certificate
+blocking please follow the guidelines in the
+<code>Troubleshooting certificates issues</code> section
+:::</p>
+<p><img src="img/backend-first-ui.png" alt="Initial Web Page"></p>
+<p>Under the account menu we can select register and create a new user
+account.</p>
+<p><img src="img/backend-logged-out-account-menu.png" alt="Register Menu"></p>
+<p>We can use any details as a verification email isn't sent at this time,
+however values should be unique.</p>
+<p><img src="img/backend-registration.png" alt="Registration"></p>
+<p>Once registered we can login immediately and should see this UI:</p>
+<p><img src="img/backend-logged-in.png" alt="Backend Post Login"></p>
+<p>Notice this page is scrollable. It includes all of the important
+instructions required for getting started.</p>
+<h2><a class="anchor" aria-hidden="true" id="manager-role-and-capabilities-_manager_role_and_capabilities"></a><a href="#manager-role-and-capabilities-_manager_role_and_capabilities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Manager Role and Capabilities {#_manager_role_and_capabilities}</h2>
+<p>::: {.note}
+This section is only applicable for users with the manager role. You can
+skip it if you don't have that role
+:::</p>
+<p>The backend server features several roles including: Manager, Set-Value
+and User. A manager role has additional capabilities to manage
+users/roles and more.</p>
+<p>When logged in as a manager we have two additional menus in the top:
+Manager and Entities. Entities provide information about the currently
+connected agents, logs and tags. The manager menu provides three
+options:</p>
+<p><img src="img/manager-menu.png" alt="Manager Menu"></p>
+<p>User management lets us add a new user or delete/edit an existing user.</p>
+<p><img src="img/manager-users.png" alt="User Management"></p>
+<p>One important feature is the ability to define the role for the created
+user. It's crucial to provide the right roles to a user otherwise the
+user won't be able to do anything!</p>
+<p><img src="img/manager-create-user.png" alt="Create/Edit a User"></p>
+<p>In case of a server side error send logs provides an easy way to send
+logs by email directly from the web UI.</p>
+<p><img src="img/manager-send-logs.png" alt="Send Logs"></p>
+<p>The entities menu includes three editable entries, tags is one such
+entry. The web UI lets us delete tags that are no longer used.</p>
+<p><img src="img/manager-tags.png" alt="Entities - Tags"></p>
+<p>We can disable breakpoints insertion in files that might expose
+sensitive data by configuring blacklist.<br>
+Files and packages in blacklist section that don't appear in exception
+section will be protected from breakpoints insertion.<br>
+On agent startup the blacklist configuration is downloaded and applied
+to future actions, which means patterns modifications here require agent
+restart.<br>
+All users can view the configured blacklist and exceptions. The manager
+can also create and delete patterns.</p>
+<p><img src="img/blacklist-view.png" alt="Config - Blacklist"></p>
+<p><img src="img/blacklist-add.png" alt="Create Blacklist Patterns"></p>
+<h2><a class="anchor" aria-hidden="true" id="usage-_usage"></a><a href="#usage-_usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage {#_usage}</h2>
+<p>Now we can start debugging our application:</p>
+<p><strong>Step 1 - Launch the backend.</strong></p>
+<p>In the server run: <code>service lightrund start</code> or <code>docker-compose up -d</code>.</p>
+<p>::: {.tip}
+Server's logs can be found under <code>/tmp/lightrun-backend-server.log</code>.
+:::</p>
+<p><strong>Step 2 - Launch an Agent.</strong></p>
+<p>Next we need to run at least one application instance with the agent
+attached. To do that we need to (add a runtime flag to the java
+application):</p>
+<p><code>java -agentpath:&lt;install_dir&gt;/agent/lightrun_agent.so java-app</code>\</p>
+<p>::: {.note}
+Make sure to replace <code>&lt;install_dir&gt;</code> with the installation directory
+:::</p>
+<p><strong>Step 3 - Debug.</strong></p>
+<p>While the application is running we can use the plugin/CLI to add
+actions and debug the app. Check our the rest of the guide for
+instructions on using both.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/plugin"><span class="arrow-prev">← </span><span>Using Lightrun in your workflow</span></a><a class="docs-next button" href="/docs/agent"><span>Agent</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#server-sign-up-_server_sign_up">Server Sign-up {#_server_sign_up}</a></li><li><a href="#manager-role-and-capabilities-_manager_role_and_capabilities">Manager Role and Capabilities {#_manager_role_and_capabilities}</a></li><li><a href="#usage-_usage">Usage {#_usage}</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

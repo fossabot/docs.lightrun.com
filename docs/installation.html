@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Installation · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Installation"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Installation · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Installation"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.cominstall.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Installation</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h1>
+<p>Lightrun consists of three main components:</p>
+<ol>
+<li><p>Management Server</p></li>
+<li><p>Agent</p></li>
+<li><p>Client - CLI and Plugin</p></li>
+</ol>
+<p>Once the backend is installed we can create a user account. We can then
+login with this new account and follow the instructions to install the
+agent, plugin and CLI.</p>
+<p>::: {.tip}
+The backend defaults to port 8080 and requires HTTPS so the URL should
+look like <a href="https://192.168.1.108:8080/">https://192.168.1.108:8080/</a>
+:::</p>
+<p>::: {.important}
+We will receive an HTTPS warning in the browser and will need to add an
+exception for this URL. SSL certificates can be applied to domains only
+and will produce a warning for in-house servers!
+:::</p>
+<h2><a class="anchor" aria-hidden="true" id="management-server-deployment---docker-compose-_management_server_deployment_docker_compose"></a><a href="#management-server-deployment---docker-compose-_management_server_deployment_docker_compose" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Management Server Deployment - Docker Compose {#_management_server_deployment_docker_compose}</h2>
+<p>Lightrun's management server works best in a container environment.
+Running Lightrun is as easy as running a single command from the
+terminal. We can run the backend server on any host using docker-compose
+or other container orchestration tool such as Kubernetes, Docker Swarm
+or Rancher etc.</p>
+<p>The easiest way to deploy the server is to run the docker-compose file.
+Copy the two <code>yml</code> files provided into an empty directory and execute:</p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-keyword">cd</span> {docker-compose-<span class="hljs-literal">directory</span>}
+<span class="hljs-keyword">docker</span>-compose up -d
+</code></pre>
+<p>In case port 8080 is already taken, we can change the port number in the
+docker-compose file.</p>
+<h2><a class="anchor" aria-hidden="true" id="agent-deployment-_agent_deployment"></a><a href="#agent-deployment-_agent_deployment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Agent Deployment {#_agent_deployment}</h2>
+<p>The agent can be downloaded from the backend server page once we login
+to the backend.</p>
+<p>In order to use the agent in an app, download and extract the zip in the
+apps server.</p>
+<p>::: {.important}
+The following code is available in the backend welcome page and should
+be copied from there as the <code>server-ip</code> and port value will be set
+correctly
+:::</p>
+<pre><code class="hljs css language-{.bash}">wget --no-check-certificate https:<span class="hljs-comment">//server-ip:8080/content/files/agent.zip&amp;host=server-ip&amp;port=8080 -O agent.zip</span>
+mkdir <span class="hljs-built_in">agent</span>
+unzip <span class="hljs-built_in">agent</span>.zip -d <span class="hljs-built_in">agent</span>
+</code></pre>
+<p>::: {.tip}
+Check out the content of the file <code>agent/agent.config</code>. It includes many
+setting options including the backend server URL
+:::</p>
+<h3><a class="anchor" aria-hidden="true" id="attaching-the-agent-_attaching_the_agent"></a><a href="#attaching-the-agent-_attaching_the_agent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attaching the Agent {#_attaching_the_agent}</h3>
+<p>Now we add the agent to the java application by changing the command
+line as such:</p>
+<pre><code class="hljs css language-{.bash}">java -<span class="hljs-string">agentpath:</span><span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/agent/</span>lightrun_agent.so RestOfTheArgumentsHere
+</code></pre>
+<p>Alternatively we can add the <code>JAVA_OPTS</code> environment variable to the
+server so all java processes launched in the server would have an agent
+attached as such:</p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_OPTS</span>=-agentpath:/path/to/agent/lightrun_agent.so
+</code></pre>
+<p>Once an agent is running we can move to the IntelliJ plugin
+installation.</p>
+<h2><a class="anchor" aria-hidden="true" id="plugin-installation-_plugin_installation"></a><a href="#plugin-installation-_plugin_installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugin Installation {#_plugin_installation}</h2>
+<p>To install the plugin download the plugin zip from the Lightrun backend.</p>
+<p>::: {.important}
+Don't unzip the file!
+:::</p>
+<p>Open IntelliJ's preferences:</p>
+<p><img src="img/intellij-preferences-mac.png" alt="IntelliJ Preferences Menu on Mac OS"></p>
+<p>Select the plugins section in the preferences menu:</p>
+<p><img src="img/plugins-section.png" alt="The plugins section"></p>
+<p>Click the settings button on the right most point and select <em>Install
+Plugin from Disk</em>:</p>
+<p><img src="img/install-plugin.png" alt="Install Plugin from Disk"></p>
+<p>Then select the zip file for the plugin from the download folder.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/introduction"><span class="arrow-prev">← </span><span>Lightrun Documentation Overview</span></a><a class="docs-next button" href="/docs/tutorial"><span>Quick start tutorial</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#management-server-deployment---docker-compose-_management_server_deployment_docker_compose">Management Server Deployment - Docker Compose {#_management_server_deployment_docker_compose}</a></li><li><a href="#agent-deployment-_agent_deployment">Agent Deployment {#_agent_deployment}</a><ul class="toc-headings"><li><a href="#attaching-the-agent-_attaching_the_agent">Attaching the Agent {#_attaching_the_agent}</a></li></ul></li><li><a href="#plugin-installation-_plugin_installation">Plugin Installation {#_plugin_installation}</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

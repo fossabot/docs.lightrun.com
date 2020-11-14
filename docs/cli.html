@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CLI Reference · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="CLI - Command Line Interface {#_cli_command_line_interface}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CLI Reference · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="CLI - Command Line Interface {#_cli_command_line_interface}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>CLI Reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.comcli.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">CLI Reference</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="cli---command-line-interface-_cli_command_line_interface"></a><a href="#cli---command-line-interface-_cli_command_line_interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CLI - Command Line Interface {#_cli_command_line_interface}</h1>
+<p>The CLI can be used in parallel to the plugin. It's a matter of personal
+preference.</p>
+<p>When we submit a command via the plugin/CLI we often provide a line
+number/file name. If they don't match the bytecode version on the app
+things will behave inconsistently and fail.</p>
+<h2><a class="anchor" aria-hidden="true" id="usage-_usage"></a><a href="#usage-_usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage {#_usage}</h2>
+<ul>
+<li><p><code>lightrunc list-agents</code> --- List the agents</p></li>
+<li><p><code>lightrunc list-tags</code> --- List the tags</p></li>
+<li><p><code>lightrunc list-agents-by-tag &lt;Tag&gt;</code> --- List the agents by given
+tag</p></li>
+<li><p><code>lightrunc list-actions &lt;AgentId&gt;</code> --- List the actions for the
+given agent id</p></li>
+<li><p><code>lightrunc log &lt;AgentId&gt; &lt;Filename&gt;:&lt;LineNumber&gt; &lt;Format&gt; -expireSec</code> --- Insert
+a log to the given agent at the given file/line with the format
+(text of the log)</p></li>
+<li><p><code>lightrunc clog &lt;AgentId&gt; &lt;Filename&gt;:&lt;LineNumber&gt; &lt;Format&gt; -condition -expireSec</code> --- Insert
+a conditional log to the given agent at the given file/line with the
+format (text of the log)</p></li>
+<li><p><code>lightrunc snapshot &lt;AgentId&gt; &lt;Filename&gt;:&lt;LineNumber&gt; -condition</code> --- Insert
+a breakpoint to the given agent at the given file/line</p></li>
+<li><p><code>lightrunc snapshot-data &lt;AgentId&gt; &lt;SnapshotId&gt;</code> --- Prints the
+accumulated data for a snapshot</p></li>
+<li><p><code>lightrunc counter &lt;AgentId&gt; &lt;Filename&gt;:&lt;LineNumber&gt; &lt;CounterName&gt; -condition -expireSec</code> --- Insert
+a breakpoint to the given agent at the given file/line</p></li>
+<li><p><code>lightrunc set-value &lt;AgentId&gt; &lt;FileName&gt;:&lt;LineNumber&gt; -expireSec &lt;VarName1=VarValue&gt; &lt;VarName2=VarValue&gt;…​</code> --- Set
+the values of the given variables in a certain line</p></li>
+<li><p><code>lightrunc rm &lt;AgentId&gt; &lt;LogId&gt;</code> --- Removes a log from the given
+agent</p></li>
+<li><p><code>lightrunc rm-tag &lt;tagName&gt;</code> --- Removes a tag from the server</p></li>
+<li><p><code>lightrunc status</code> --- Prints the current status of the backend</p></li>
+<li><p><code>lightrunc detach &lt;on|off&gt;</code> --- Disconnects all agents and disables
+lightrun instantly (when on) until it's turned off again</p></li>
+<li><p><code>lightrunc print-logs &lt;AgentId&gt;</code> --- Print recent logs for the given
+agent</p></li>
+<li><p><code>lightrunc enable-logs &lt;AgentId&gt;</code> --- Logs for this agent id will be
+available in the <code>print-logs</code> command. Logs are still printed in the
+server.</p></li>
+<li><p><code>lightrunc client-logs &lt;AgentId&gt;</code> --- Logs for this agent id will be
+available in the <code>print-logs</code> command and hidden in the server!</p></li>
+<li><p><code>lightrunc disable-logs &lt;AgentId&gt;</code> --- Stops tracking logs for the
+given agent ID in the backend/client (this doesn't stop the log)</p></li>
+<li><p><code>lightrunc server-url &lt;ServerURL&gt;</code> --- Sets the server URL for the
+command line</p></li>
+<li><p><code>lightrunc create-company &lt;Name&gt; &lt;LicenseExpiry dd/MM/yyyy&gt; &lt;LicensedAgents&gt; &lt;AgentsEnabled&gt;</code> --- Creates
+a new company with an agent user.</p></li>
+<li><p><code>lightrunc create-user &lt;Username&gt; &lt;FirstName&gt; &lt;LastName&gt; &lt;Email&gt; &lt;CompanyName&gt; &lt;Role1&gt; &lt;Role2&gt;…​</code> --- Creates
+a new user in the given company.</p></li>
+<li><p><code>lightrunc login &lt;Username&gt;</code> Log in with the given user name (you
+will be prompted for password). Optionally you can add a password by
+adding a 3rd argument password followed by your password</p></li>
+<li><p><code>lightrunc logout</code> --- Logs out the currently logged in user on this
+machine</p></li>
+<li><p><code>lightrunc version</code> --- Prints the version of lightrunc and the
+backend server</p></li>
+<li><p><code>lightrunc listen</code> --- Listens to agent/log registration events and
+prints them out</p></li>
+<li><p><code>lightrunc -v</code> --- Verbose mode</p></li>
+<li><p><code>lightrunc user</code> --- Prints the details on the server for the
+currently logged in user</p></li>
+<li><p><code>lightrunc help</code> --- Print help details</p></li>
+</ul>
+<p>There's a lot to digest here but it's mostly intuitive once you start
+using it.</p>
+<p><strong>Before We Begin.</strong></p>
+<p>Before doing anything we must login and set the server URL. This must be
+done at least once per client machine.</p>
+<p>::: {.tip}
+Login credentials are shared between the CLI and Plugin
+:::</p>
+<pre><code class="hljs css language-{.bash}">lightrunc server-url https:<span class="hljs-regexp">//</span><span class="hljs-number">192.168</span>.<span class="hljs-number">0.10</span>:<span class="hljs-number">8080</span><span class="hljs-regexp">/company/</span>DefaultCompany
+</code></pre>
+<p>This will set the URL of the backend to the given URL. We need to
+replace <code>192.168.0.10:8080</code> with the actual server IP and port.</p>
+<p>We can then use the login command as such:</p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-attribute">lightrunc login myuser</span>
+</code></pre>
+<p>This will produce a password prompt.</p>
+<p>::: {.note}
+For this to work we need to create a new user in the server first via
+the web UI
+:::</p>
+<h2><a class="anchor" aria-hidden="true" id="examples-_examples"></a><a href="#examples-_examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples {#_examples}</h2>
+<p><strong>List Agents and Actions.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc <span class="hljs-built_in">list</span> <span class="hljs-built_in">agents</span>
+</code></pre>
+<p>This prints the list of agents and their associated actions. It results
+in output similar to this:</p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-number">0</span> : ID <span class="hljs-number">5</span>c6e9cdef4e833279ee286a1 HOST LAPTOP-GAJ05OS8 PID <span class="hljs-number">18903</span> UPDATE Mon, <span class="hljs-number">28</span> Oct <span class="hljs-number">2019</span> <span class="hljs-number">16</span>:<span class="hljs-number">19</span>:<span class="hljs-number">03</span> GMT
+ &gt;  ACTION <span class="hljs-number">8</span>c6e9cdef4e833279ee265f FILE PrimeMain.java LINE <span class="hljs-number">20</span> TXT Hello {cnt}
+</code></pre>
+<p><strong>List Actions.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc <span class="hljs-type">list</span> actions <span class="hljs-number">0</span>
+</code></pre>
+<p>If we want to see the actions of a specific agent and not all agents we
+can use list actions. Notice the last argument is the agent id.</p>
+<p>Whenever an agent ID or log ID is used we can provide the explicit ID
+e.g. in the case above it would be:</p>
+<pre><code class="hljs css language-{.bash}">lightrunc <span class="hljs-type">list</span> actions <span class="hljs-number">5</span>c6e9cdef4e833279ee286a1
+</code></pre>
+<p>However, providing an offset from the listing would also work in this
+case. So 0 as we did before, meant the first agent printed by
+<code>list agents</code>. Similarly action 0 would mean the first action within
+that agent.</p>
+<p>Next lets look at log insertions...​</p>
+<p><strong>Insert Log.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc log <span class="hljs-number">0</span> <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Main</span>.</span></span>java:<span class="hljs-number">10</span> <span class="hljs-string">"Array size {arr.length}"</span>
+</code></pre>
+<p>This command inserts a new log to the first agent. The log will print
+&quot;Array size &quot; followed by the result of the expression <code>arr.length</code>.
+This will only work with the first agent has a class compiled from
+<code>Main.java</code> and has a variable called <code>arr</code> defined in line 10.</p>
+<p>::: {.tip}
+Inserted logs have default expiration timeout of 24 hours
+:::</p>
+<p>Lets say that we have more than one agent and we want to apply this to a
+tag instead of a specific agent. We can do this:</p>
+<p><strong>Insert Log to Tag.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc <span class="hljs-built_in">log</span> <span class="hljs-keyword">ta</span><span class="hljs-variable">g:TagName</span> Main.jav<span class="hljs-variable">a:10</span> <span class="hljs-string">"Array size {arr.length}"</span>
+</code></pre>
+<p>All CLI commands can be used with tags instead of agent IDs. Just use
+the syntax <code>tag:TagName</code> and replace the word <code>TagName</code> with the
+appropriate tag.</p>
+<p>For most cases this is pretty trivial the only difference is for
+commands such as list where we need to do this:</p>
+<p><strong>List all the tags.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc <span class="hljs-keyword">list</span> <span class="hljs-keyword">tags</span>
+</code></pre>
+<p>Every action can have a condition, this is often recommended to avoid
+too much information/overhead and to narrow the information.</p>
+<p><strong>Conditional Log.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc <span class="hljs-keyword">clog </span><span class="hljs-number">5</span>c6e9cdef4e833279ee286a1 Main.<span class="hljs-keyword">java:10 </span> <span class="hljs-string">"i % 10 == 0"</span> <span class="hljs-string">"Array size {arr.length}"</span>
+</code></pre>
+<p>The log above will be printed when the expression <code>i % 10 == 0</code> will be
+evaluated to <code>true</code>.</p>
+<p>Once we're done with an action we need to clean up. Here's where the
+<code>rm</code> command comes in handy:</p>
+<p><strong>Remove Command.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc rm <span class="hljs-number">0</span> <span class="hljs-number">0</span>
+</code></pre>
+<p>This removes the first action from the first agent.</p>
+<p>::: {.note}
+This works for tags and full IDs as well
+:::</p>
+<p>Lightrun comes with a special tool to &quot;pull the plug&quot; and disable
+Lightrun. If there are issues where we want to rule out Lightruns blame
+we can use detach to disable all agents:</p>
+<p><strong>Detaches all Agents.</strong></p>
+<pre><code class="hljs css language-{.bash}">lightrunc detach <span class="hljs-keyword">on</span>
+</code></pre>
+<p><strong>Re-enable agents.</strong></p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-attribute">lightrunc</span> detach <span class="hljs-literal">off</span>
+</code></pre>
+<p><strong>Create company by Admin.</strong></p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-string">lightrunc </span><span class="hljs-built_in">create-company</span> &lt;<span class="hljs-string">Name&gt;</span> &lt;<span class="hljs-string">LicenseExpiry </span><span class="hljs-string">dd/</span><span class="hljs-string">MM/</span><span class="hljs-string">yyyy&gt;</span> &lt;<span class="hljs-string">LicensedAgents&gt;</span> &lt;<span class="hljs-string">AgentsEnabled&gt;</span>
+</code></pre>
+<ul>
+<li><p>&lt;LicenseExpiry&gt; Date, license expiration date. After expired,
+agents can't register.</p></li>
+<li><p>&lt;LicensedAgents&gt; Numeric, Max number of allowed agents.</p></li>
+<li><p>&lt;AgentsEnabled&gt; Boolean, indicates whether agents are enabled in
+the company.</p></li>
+</ul>
+<p>This will create a new company with an agent user.</p>
+<p><strong>Create user by Admin or Manager.</strong></p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-built_in">create-user</span> &lt;<span class="hljs-string">Username&gt;</span> &lt;<span class="hljs-string">FirstName&gt;</span> &lt;<span class="hljs-string">LastName&gt;</span> &lt;<span class="hljs-string">Email&gt;</span> &lt;<span class="hljs-string">CompanyName&gt;</span> &lt;<span class="hljs-string">Role1&gt;</span> &lt;<span class="hljs-string">Role2&gt;</span>...
+</code></pre>
+<ul>
+<li><p>&lt;Username&gt; and &lt;Email&gt; should be unique globally</p></li>
+<li><p>&lt;RoleX&gt; should be one of the following: [ROLE_ADMIN,
+ROLE_MANAGER, ROLE_USER]. Only Admin is authorized to create a user
+with ROLE_AGENT.</p></li>
+</ul>
+<p>This will create a new user in the given company.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/exceptions"><span class="arrow-prev">← </span><span>Monitoring exceptions</span></a><a class="docs-next button" href="/docs/integrations"><span>Integrations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#usage-_usage">Usage {#_usage}</a></li><li><a href="#examples-_examples">Examples {#_examples}</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

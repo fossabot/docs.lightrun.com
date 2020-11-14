@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Quick start tutorial · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Demo {#_demo}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Quick start tutorial · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Demo {#_demo}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.comdemo.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Quick start tutorial</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="demo-_demo"></a><a href="#demo-_demo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Demo {#_demo}</h1>
+<p>The <code>demo</code> directory has some sample java examples. We will use them in
+order to demonstrate the debugging capabilities.</p>
+<p>All the demos below assume the Lightrun backend is already installed and
+running.</p>
+<h2><a class="anchor" aria-hidden="true" id="prime-numbers-counter-_prime_numbers_counter"></a><a href="#prime-numbers-counter-_prime_numbers_counter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prime Numbers Counter {#_prime_numbers_counter}</h2>
+<p>This demo is located under the <code>demo/prime-app</code> directory. The file
+<code>PrimeMain.java</code> has a short code that counts all the prime numbers less
+than 1B.</p>
+<p>Let's see how we can add additional log prints to this application:</p>
+<h3><a class="anchor" aria-hidden="true" id="1-run-the-application-_1_run_the_application"></a><a href="#1-run-the-application-_1_run_the_application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Run the application {#_1_run_the_application}</h3>
+<p>Open a new shell, and then:</p>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-attr">cd</span> <span class="hljs-string">demo/prime-app</span>
+<span class="hljs-attr">javac</span> <span class="hljs-string">PrimeMain.java</span>
+<span class="hljs-attr">java</span> <span class="hljs-string">-agentpath:&lt;install_dir&gt;/lightrun_agent.so PrimeMain</span>
+</code></pre>
+<p>Now the application is running.</p>
+<p>We can validate that the agent registered correctly by running
+<code>lightrunc list agents</code>.</p>
+<p>We should see something like:</p>
+<pre><code class="hljs">0 : ID 5c84e29871f7a700010ca737UPDATE Sun, 10 Mar 2019 10:10:32 GMT
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="2-use-lightruns-cli-_2_use_lightruns_cli"></a><a href="#2-use-lightruns-cli-_2_use_lightruns_cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Use Lightruns CLI {#_2_use_lightruns_cli}</h3>
+<p>Open a new shell.</p>
+<p>Let's try to print the current primes counter.</p>
+<pre><code class="hljs">lightrunc log 0 PrimeMain.java:20 &quot;Current Count is {cnt}&quot;
+</code></pre>
+<p>When we look at the application window we will see something like:</p>
+<pre><code class="hljs">Feb 28, 2019 2:11:29 AM PrimeMain main
+INFO: LOGPOINT: current prime is 1467954
+Feb 28, 2019 2:11:29 AM PrimeMain main
+INFO: LOGPOINT: current prime is 1467955
+Feb 28, 2019 2:11:29 AM PrimeMain main
+INFO: LOGPOINT: current prime is 1467956
+Feb 28, 2019 2:11:29 AM PrimeMain main
+INFO: LOGPOINT: Logpoint is paused due to high call rate until log quota is restored
+</code></pre>
+<p>Here we can see than our agent does not allow too many log prints to be
+fired - this is intended, we cap the CPU overhead of the agent.</p>
+<p>Not all the variables are available for exploration. Some of the debug
+information might be missing due to compiler's optimizations. In order
+to enhance the debug information, we should add the <code>-g</code> flag to the
+compilation command (more information is available in README file).</p>
+<p>For example in this demo application when we try to add the following
+log:</p>
+<pre><code class="hljs">lightrunc log 0 PrimeMain.java:20 &quot;Current Prime is {i}&quot;
+</code></pre>
+<p>We see the following log printout in the application:</p>
+<pre><code class="hljs">INFO: LOGPOINT: Current Prime is Identifier i not found
+Feb 28, 2019 2:05:07 AM PrimeMain isPrime
+</code></pre>
+<p>Compiling with <code>-g</code> flag <code>javac -g PrimeMain.java</code> will enable watching
+i variable value.</p>
+<h2><a class="anchor" aria-hidden="true" id="web-app-demo-_web_app_demo"></a><a href="#web-app-demo-_web_app_demo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web App Demo {#_web_app_demo}</h2>
+<p>This demo is located under <code>demo/web-app</code> directory. Here we will show
+how to debug a live production web server application using dynamic
+logs.</p>
+<h3><a class="anchor" aria-hidden="true" id="build-and-run-the-web-ssrver-_build_and_run_the_web_ssrver"></a><a href="#build-and-run-the-web-ssrver-_build_and_run_the_web_ssrver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build and Run the Web sSrver {#_build_and_run_the_web_ssrver}</h3>
+<p>First, let's take a look on the application.</p>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-attr">cd</span> <span class="hljs-string">demo/web-app</span>
+<span class="hljs-attr">mvn</span> <span class="hljs-string">package</span>
+<span class="hljs-attr">java</span> <span class="hljs-string">-jar  target/webapp_demo-0.0.1-SNAPSHOT.jar</span>
+</code></pre>
+<p>Now the webserver is running on <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>This webserver is a simple fibonacci series calculator. When we enter
+<code>http://localhost:8080/&lt;number&gt;/</code> we see the <code>&lt;number&gt;</code> fibonacci
+element.</p>
+<p>For example, <a href="http://localhost:8080/33">http://localhost:8080/33</a> will print 5702887.</p>
+<h3><a class="anchor" aria-hidden="true" id="debug-the-webserver-_debug_the_webserver"></a><a href="#debug-the-webserver-_debug_the_webserver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debug the webserver {#_debug_the_webserver}</h3>
+<h4><a class="anchor" aria-hidden="true" id="1-run-the-application-_1_run_the_application_2"></a><a href="#1-run-the-application-_1_run_the_application_2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Run the application {#_1_run_the_application_2}</h4>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-attr">cd</span> <span class="hljs-string">demo/web-app</span>
+<span class="hljs-attr">mvn</span> <span class="hljs-string">package</span>
+<span class="hljs-attr">java</span> <span class="hljs-string">-agentpath:&lt;install_dir&gt;/lightrun_agent.so \
+     -jar  target/webapp_demo-0.0.1-SNAPSHOT.jar</span>
+</code></pre>
+<p>Now the webserver is running on <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion"></a><a href="#2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Use Lightruns CLI for log insertion {#_2_use_lightruns_cli_for_log_insertion}</h4>
+<p>Looks like our simple app has an integer overflow:</p>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-attribute">curl</span> http://localhost:8080/50 <span class="hljs-comment"># will print -1109825406o</span>
+</code></pre>
+<p>We can use Lightruns CLI for inserting logs, and see the trace of such a
+request.</p>
+<pre><code class="hljs css language-{.shell}"><span class="xml">lightrunc log 0 main/java/Example.java:20 "</span><span class="hljs-template-variable">{n3}</span><span class="xml"> = </span><span class="hljs-template-variable">{n1}</span><span class="xml"> + </span><span class="hljs-template-variable">{n2}</span><span class="xml">"
+</span></code></pre>
+<p>We will see an output that looks like:</p>
+<pre><code class="hljs">INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 1 = 0 + 1
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 2 = 1 + 1
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 3 = 1 + 2
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 5 = 2 + 3
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 8 = 3 + 5
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 13 = 5 + 8
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 21 = 8 + 13
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 34 = 13 + 21
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 55 = 21 + 34
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 89 = 34 + 55
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 144 = 55 + 89
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 233 = 89 + 144
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 377 = 144 + 233
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 610 = 233 + 377
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 987 = 377 + 610
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 1597 = 610 + 987
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 2584 = 987 + 1597
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 4181 = 1597 + 2584
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 6765 = 2584 + 4181
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 10946 = 4181 + 6765
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 17711 = 6765 + 10946
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 28657 = 10946 + 17711
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 46368 = 17711 + 28657
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 75025 = 28657 + 46368
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 121393 = 46368 + 75025
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 196418 = 75025 + 121393
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 317811 = 121393 + 196418
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 514229 = 196418 + 317811
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 832040 = 317811 + 514229
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 1346269 = 514229 + 832040
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 2178309 = 832040 + 1346269
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 3524578 = 1346269 + 2178309
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 5702887 = 2178309 + 3524578
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 9227465 = 3524578 + 5702887
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 14930352 = 5702887 + 9227465
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 24157817 = 9227465 + 14930352
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 39088169 = 14930352 + 24157817
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 63245986 = 24157817 + 39088169
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 102334155 = 39088169 + 63245986
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 165580141 = 63245986 + 102334155
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 267914296 = 102334155 + 165580141
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 433494437 = 165580141 + 267914296
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 701408733 = 267914296 + 433494437
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 1134903170 = 433494437 + 701408733
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: 1836311903 = 701408733 + 1134903170
+INFO 14911 --- [nio-8080-exec-1] com.google.DynamicLog   : LOGPOINT: -1323752223 = 1134903170 + 1836311903
+</code></pre>
+<p>Now we can see clearly the integer overflow.</p>
+<h2><a class="anchor" aria-hidden="true" id="dockerized-application-_dockerized_application"></a><a href="#dockerized-application-_dockerized_application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dockerized Application {#_dockerized_application}</h2>
+<p>TODO</p>
+<h2><a class="anchor" aria-hidden="true" id="scala-game-of-life-_scala_game_of_life"></a><a href="#scala-game-of-life-_scala_game_of_life" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scala Game Of Life {#_scala_game_of_life}</h2>
+<p>Our agent can be used also for inserting logs into scala application.
+The files for this demo are located under <code>demo/scala-game-of-life</code>.
+Here we will find the famous <strong>Game Of Life</strong> simulation.</p>
+<h3><a class="anchor" aria-hidden="true" id="build-and-run-the-game-_build_and_run_the_game"></a><a href="#build-and-run-the-game-_build_and_run_the_game" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build and Run the Game {#_build_and_run_the_game}</h3>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">TERM</span>=xterm-color
+cd demo/scala-game-of-life
+sbt package
+sbt <span class="hljs-builtin-name">run</span>
+</code></pre>
+<p>This will print to the console every few msecond a new 'Game Of Life'
+State.</p>
+<h3><a class="anchor" aria-hidden="true" id="debug-the-game-_debug_the_game"></a><a href="#debug-the-game-_debug_the_game" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debug the Game {#_debug_the_game}</h3>
+<h4><a class="anchor" aria-hidden="true" id="1-run-the-application-_1_run_the_application_3"></a><a href="#1-run-the-application-_1_run_the_application_3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Run the application {#_1_run_the_application_3}</h4>
+<pre><code class="hljs css language-{.shell}">cd demo/scala-game-<span class="hljs-keyword">of</span>-life
+sbt package
+java  -<span class="hljs-symbol">agentpath:</span>&lt;install_dir&gt;<span class="hljs-regexp">/lightrun_agent.so \
+      -cp /home</span><span class="hljs-regexp">/osboxes/</span>.sbt/boot/scala-<span class="hljs-number">2.12</span>.<span class="hljs-number">7</span>/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">scala</span>-<span class="hljs-title">library</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">target</span>/<span class="hljs-title">scala</span>-2.12/<span class="hljs-title">game</span>-<span class="hljs-title">of</span>-<span class="hljs-title">life</span>-<span class="hljs-title">scala_2</span>.12-0.1.0.<span class="hljs-title">jar</span> \</span>
+      de.l7r7.lab.conway.GameOfLife
+</code></pre>
+<p>Simulation is running.</p>
+<h4><a class="anchor" aria-hidden="true" id="2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion_2"></a><a href="#2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion_2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Use Lightruns CLI for log insertion {#_2_use_lightruns_cli_for_log_insertion_2}</h4>
+<pre><code class="hljs css language-{.shell}">lightrunc <span class="hljs-keyword">log</span> 0 <span class="hljs-keyword">de</span>/l7r7/<span class="hljs-keyword">lab</span>/conway/GameOfLife.<span class="hljs-keyword">scala</span>:85 <span class="hljs-string">"Board Type {board.getClass().toString()}"</span>
+</code></pre>
+<p>This will insert a log print after every game simulation.</p>
+<p>::: {.note}
+Expressions must be written using the Java language syntax, like in the
+example above.
+:::</p>
+<h2><a class="anchor" aria-hidden="true" id="groovy-prime-main-_groovy_prime_main"></a><a href="#groovy-prime-main-_groovy_prime_main" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Groovy Prime Main {#_groovy_prime_main}</h2>
+<p>Our agent can be used also for inserting logs into groovy application.
+The files for this demo are located under <code>demo/groovy-app</code>. The file
+<code>GroovyPrimeMain.groovy</code> has a short code that counts all the prime
+numbers less than 1B.</p>
+<h3><a class="anchor" aria-hidden="true" id="1-run-the-application-_1_run_the_application_4"></a><a href="#1-run-the-application-_1_run_the_application_4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Run the application {#_1_run_the_application_4}</h3>
+<p>Open a new shell, and then:</p>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-keyword">cd</span> demo/groovy-app
+groovyc GroovyPrimeMain.groovy
+java -<span class="hljs-keyword">cp</span> &lt;path_to_groovy_jar.jar&gt;:. -agentpath:<span class="hljs-symbol">&lt;install_dir&gt;</span>/lightrun_agent.<span class="hljs-keyword">so</span> GroovyPrimeMain
+</code></pre>
+<p>The application is running.</p>
+<h3><a class="anchor" aria-hidden="true" id="2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion_3"></a><a href="#2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion_3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Use Lightruns CLI for log insertion {#_2_use_lightruns_cli_for_log_insertion_3}</h3>
+<pre><code class="hljs css language-{.shell}">lightrunc log <span class="hljs-number">0</span> <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">GroovyPrimeMain</span>.</span></span>groovy:<span class="hljs-number">22</span> <span class="hljs-string">"{num} is prime"</span>
+</code></pre>
+<p>We will see an output that looks like:</p>
+<pre><code class="hljs">Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: 110389847 is prime
+Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: 110389871 is prime
+Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: 110389879 is prime
+Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: 110389913 is prime
+Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: 110389933 is prime
+Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: 110389963 is prime
+Feb 23, 2020 3:25:39 PM GroovyPrimeMain isPrime
+INFO: LOGPOINT: Logpoint is paused due to high call rate until log quota is restored
+</code></pre>
+<p>::: {.note}
+Expressions must be written using the Java language syntax, like in the
+example above.
+:::</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/plugin"><span>Using Lightrun in your workflow</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prime-numbers-counter-_prime_numbers_counter">Prime Numbers Counter {#_prime_numbers_counter}</a><ul class="toc-headings"><li><a href="#1-run-the-application-_1_run_the_application">1. Run the application {#_1_run_the_application}</a></li><li><a href="#2-use-lightruns-cli-_2_use_lightruns_cli">2. Use Lightruns CLI {#_2_use_lightruns_cli}</a></li></ul></li><li><a href="#web-app-demo-_web_app_demo">Web App Demo {#_web_app_demo}</a><ul class="toc-headings"><li><a href="#build-and-run-the-web-ssrver-_build_and_run_the_web_ssrver">Build and Run the Web sSrver {#_build_and_run_the_web_ssrver}</a></li><li><a href="#debug-the-webserver-_debug_the_webserver">Debug the webserver {#_debug_the_webserver}</a></li></ul></li><li><a href="#dockerized-application-_dockerized_application">Dockerized Application {#_dockerized_application}</a></li><li><a href="#scala-game-of-life-_scala_game_of_life">Scala Game Of Life {#_scala_game_of_life}</a><ul class="toc-headings"><li><a href="#build-and-run-the-game-_build_and_run_the_game">Build and Run the Game {#_build_and_run_the_game}</a></li><li><a href="#debug-the-game-_debug_the_game">Debug the Game {#_debug_the_game}</a></li></ul></li><li><a href="#groovy-prime-main-_groovy_prime_main">Groovy Prime Main {#_groovy_prime_main}</a><ul class="toc-headings"><li><a href="#1-run-the-application-_1_run_the_application_4">1. Run the application {#_1_run_the_application_4}</a></li><li><a href="#2-use-lightruns-cli-for-log-insertion-_2_use_lightruns_cli_for_log_insertion_3">2. Use Lightruns CLI for log insertion {#_2_use_lightruns_cli_for_log_insertion_3}</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Integrations · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Agent Integrations {#integrations}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Integrations · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Agent Integrations {#integrations}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Integrations</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.comintegration.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Integrations</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="agent-integrations-integrations"></a><a href="#agent-integrations-integrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Agent Integrations {#integrations}</h1>
+<p>Every application server has its own way of customizing jvm arguments.</p>
+<h2><a class="anchor" aria-hidden="true" id="tomcat-_tomcat"></a><a href="#tomcat-_tomcat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tomcat {#_tomcat}</h2>
+<p>In order to configure Tomcat to use Lightruns agent we need to add the
+path to the app war file as an additional parameter to the JAVA_OPTS:</p>
+<pre><code class="hljs css language-{.shell}">-agentpath:<span class="hljs-params">&lt;install_dir&gt;</span><span class="hljs-meta-keyword">/agent/</span>lightrun_agent.so=--lightrun_extra_class_path=<span class="hljs-params">&lt;tomcat-path&gt;</span><span class="hljs-meta-keyword">/webapps/</span><span class="hljs-params">&lt;app-name.war&gt;</span>
+</code></pre>
+<p>Please restart the server:</p>
+<pre><code class="hljs css language-{.shell}">./catalina.<span class="hljs-keyword">sh</span> <span class="hljs-keyword">stop</span>
+./catalina.<span class="hljs-keyword">sh</span> start
+</code></pre>
+<p><strong>Note:</strong></p>
+<ol>
+<li><p>This will make the Agent to run every time the webserver restarts.</p></li>
+<li><p>Tomcat autodeploy will not start a new agent. Therefore, after an
+autodeploy new insertions will not affect the application.</p></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="glassfish-_glassfish"></a><a href="#glassfish-_glassfish" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GlassFish {#_glassfish}</h2>
+<p>In order to configure GlassFish to use Lightruns agent we need to add
+the following to the runtime jvm options:</p>
+<pre><code class="hljs css language-{.shell}">-agentpath:<span class="hljs-params">&lt;install_dir&gt;</span><span class="hljs-meta-keyword">/agent/</span>lightrun_agent.so=--lightrun_extra_class_path=<span class="hljs-params">&lt;glassfish-domain-path&gt;</span><span class="hljs-meta-keyword">/applications/</span><span class="hljs-params">&lt;app-name&gt;</span>/WEB-INF<span class="hljs-meta-keyword">/classes/</span>
+</code></pre>
+<p>There are several methods to add this jvm option:</p>
+<ol>
+<li><p><strong>Through the Admin panel (usually <a href="http://localhost:4848">http://localhost:4848</a>)</strong><br>
+Configurations → server-config → JVM Options tab.\</p></li>
+<li><p><strong>GlassFish CLI</strong><br>
+<code>asadmin create-jvm-options &lt;new-jvm-option&gt;</code>\</p></li>
+<li><p><strong>Manually</strong><br>
+Add the JVM option to <code>&lt;glassfish-domain-path&gt;/config/domain.xml</code>.</p></li>
+</ol>
+<p><strong>Note:</strong></p>
+<ol>
+<li><p>This will make the Agent to run every time the webserver restarts.</p></li>
+<li><p>Glassfish autodeploy will not start a new agent. Therefore, after an
+autodeploy new insertions will not affect the application.</p></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="wildfly-_wildfly"></a><a href="#wildfly-_wildfly" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WildFly {#_wildfly}</h2>
+<p>In order to configure WildFly to use Lightruns agent we need to add the
+path to the app war file as an additional parameter to the JAVA_OPTS:</p>
+<pre><code class="hljs css language-{.shell}">-<span class="ruby"><span class="hljs-symbol">agentpath:</span>&lt;install_dir&gt;<span class="hljs-regexp">/agent/lightrun</span>_agent.so=--lightrun_extra_class_path=&lt;widlfly-deploy-path&gt;<span class="hljs-regexp">/&lt;app-name.war&gt;. e.g. '--lightrun_extra_class_path=/opt</span><span class="hljs-regexp">/jboss/wildfly</span><span class="hljs-regexp">/standalone/deployments</span><span class="hljs-regexp">/myapp.war'
+</span></span></code></pre>
+<p>The following is checked on CentOS 7.6/WildFly 18 (official WildFly
+Docker image)</p>
+<ol>
+<li><p>The JAVA_OPTS is in the standalone.conf file which is in
+<code>/opt/jboss/wildfly/bin/</code></p></li>
+<li><p>The default server logs are in
+<code>/opt/jboss/wildfly/standalone/log/server.log</code></p></li>
+<li><p>To deploy the app copy a .war file to the deployment dir
+<code>/opt/jboss/wildfly/standalone/deployments/</code></p></li>
+<li><p>To redeploy an app, copy a new file to the deployment dir and then
+run <code>touch &lt;app_name&gt;.war</code> in the same dir. Then see
+<code>/opt/jboss/wildfly/standalone/log/server.log</code> to verify</p></li>
+<li><p>The above approach will stop agent from functioning properly</p></li>
+<li><p>To make it work, restart the WildFly - <a href="https://subscription.packtpub.com/book/networking_and_servers/9781784392413/2/ch02lvl1sec29/shutting-down-and-restarting-an-instance-via-the-cli">How to start/stop the
+WildFly
+server</a></p></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="jetty-_jetty"></a><a href="#jetty-_jetty" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Jetty {#_jetty}</h2>
+<p>We need to create a new file <code>/var/lib/jetty/start.d/lightrun.ini</code> with
+the following content:</p>
+<pre><code class="hljs css language-{.bash}">-<span class="ruby">-exec
+</span>-<span class="ruby"><span class="hljs-symbol">agentpath:</span>&lt;install_dir&gt;<span class="hljs-regexp">/agent/lightrun</span>_agent.so
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="weblogic-_weblogic"></a><a href="#weblogic-_weblogic" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Weblogic {#_weblogic}</h2>
+<p>In order to configure Weblogic to use Lightruns agent we need to:</p>
+<ol>
+<li>Add the path to the app ear file as an additional parameter to the
+JAVA_OPTS:</li>
+</ol>
+<pre><code class="hljs css language-{.shell}">-agentpath:<span class="hljs-symbol">&lt;install_dir&gt;</span>/agent/lightrun_agent.<span class="hljs-keyword">so</span>=--lightrun_extra_class_path=<span class="hljs-symbol">&lt;weblogic-deploy-path&gt;</span>/&lt;app-name.ear&gt;. <span class="hljs-keyword">e</span>.g. <span class="hljs-string">'--lightrun_extra_class_path=Oracle/Middleware/user_projects/domains/mydomain/deployments/myapp.ear'</span>
+</code></pre>
+<ol>
+<li>Tell Weblogic server to use the sun Http Handlers and not install
+its own:</li>
+</ol>
+<pre><code class="hljs css language-{.shell}"><span class="hljs-attr">-DUseSunHttpHandler</span>=<span class="hljs-literal">true</span>
+</code></pre>
+<p>There are several methods to add those jvm options:</p>
+<ol>
+<li><p><strong>To all servers</strong><br>
+Add the JVM option to
+<code>Oracle/Middleware/user_projects/domains/&lt;your-domain&gt;/bin/setDomainEnv.sh</code>
+where JAVA_OPTIONS is set</p></li>
+<li><p><strong>Through the Admin panel (usually
+<a href="http://localhost:7001/console">http://localhost:7001/console</a>)</strong><br>
+Press Lock &amp; Edit, then: Environment → Servers → &lt;Wanted-Server&gt; →
+Server Start → Arguments\</p></li>
+</ol>
+<p><strong>Note:</strong></p>
+<p>This will make the Agent run every time the server restarts.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/cli"><span class="arrow-prev">← </span><span>CLI Reference</span></a><a class="docs-next button" href="/docs/serveintegrations"><span>Integrations from the server</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#tomcat-_tomcat">Tomcat {#_tomcat}</a></li><li><a href="#glassfish-_glassfish">GlassFish {#_glassfish}</a></li><li><a href="#wildfly-_wildfly">WildFly {#_wildfly}</a></li><li><a href="#jetty-_jetty">Jetty {#_jetty}</a></li><li><a href="#weblogic-_weblogic">Weblogic {#_weblogic}</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

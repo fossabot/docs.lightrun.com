@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Agent · Lightrun Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Agent {#_agent}"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Agent · Lightrun Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://spinningrachel.github.io/docs.lightrun.com//"/><meta property="og:description" content="Agent {#_agent}"/><meta property="og:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://spinningrachel.github.io/docs.lightrun.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/atom.xml" title="Lightrun Documentation Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://spinningrachel.github.io/docs.lightrun.com/blog/feed.xml" title="Lightrun Documentation Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/company-logo1.png" alt="Lightrun Documentation"/><h2 class="headerTitleWithLogo">Lightrun Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/introduction" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">FAQ</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Working with Agents</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Lightrun Documentation Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Quick start tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using Lightrun</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Using Lightrun in your workflow</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun Administration</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server">Setting up the Lightrun Backend</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Working with Agents</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/agent">Agent</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions">Monitoring exceptions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CLI Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/cli">CLI Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/integrations">Integrations</a></li><li class="navListItem"><a class="navItem" href="/docs/serveintegrations">Integrations from the server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Troubleshooting</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Lightrun license use</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/licenses">Lightrun license use</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/spinningrachel/docs.lightrun.comagent.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Agent</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="agent-_agent"></a><a href="#agent-_agent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Agent {#_agent}</h1>
+<p>The agent is at the core of Lightrun. Setting up agents is the most
+important task once the backend is in place.</p>
+<p>::: {.tip}
+For elaborate agent setups please check out the <a href="integration.xml#integrations">Agent
+Integrations</a>.
+:::</p>
+<h2><a class="anchor" aria-hidden="true" id="tagging-_tagging"></a><a href="#tagging-_tagging" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tagging {#_tagging}</h2>
+<p>Tagging lets us group agents together for common functionality under a
+meaningful name. E.g. Database Servers, Staging, 18GB Machines etc.</p>
+<p>We can use any set of tags to define an agent. This would allow binding
+actions to an agent even before it was launched as well as applying an
+action to a cross section of servers.</p>
+<p>We tag an agent by editing the file <code>agent.metadata.json</code> e.g.:</p>
+<pre><code class="hljs css language-{.json}">{
+    <span class="hljs-attr">"registration"</span>: {
+      <span class="hljs-attr">"tags"</span>: [
+        {
+          <span class="hljs-attr">"name"</span>: <span class="hljs-string">"ProductionsAgents"</span>
+        },
+        {
+          <span class="hljs-attr">"name"</span>: <span class="hljs-string">"JDK1.8"</span>
+        },
+        {
+          <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Ubuntu16"</span>
+        }
+      ]
+    }
+}
+</code></pre>
+<p>We can add/remove entries within the &quot;tags&quot; section.</p>
+<p>::: {.note}
+Changes to this file aren't detected dynamically. An agent restart would
+be required
+:::</p>
+<p>Once we bind an action to a tag it will be added implicitly to the
+tagged agents. This can be useful for many cases. E.g. integration tests
+can execute with a specific tag, that lets us debug an integration test
+failure by binding an action based on a tag.</p>
+<p>Tags can also be defined in the command line e.g.</p>
+<pre><code class="hljs css language-{.bash}">java -Dlightrun.registration.tags=myTag -<span class="hljs-string">agentpath:</span><span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/agent/</span>lightrun_agent.so RestOfTheArgumentsHere
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="customization-_customization"></a><a href="#customization-_customization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization {#_customization}</h2>
+<h3><a class="anchor" aria-hidden="true" id="dynamic-logger-_dynamic_logger"></a><a href="#dynamic-logger-_dynamic_logger" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dynamic Logger {#_dynamic_logger}</h3>
+<p>The inserted logs are printed using <code>java.util.logging</code> logger. You can
+customize the log prints by adding
+<code>-Djava.util.logging.config.file=/path/to/app.properties</code> to the command
+line.</p>
+<h3><a class="anchor" aria-hidden="true" id="agent-config-_agent_config"></a><a href="#agent-config-_agent_config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Agent Config {#_agent_config}</h3>
+<p>There are a few parameters we can tune in order to change the agent
+configuration. The configuration file is located under
+<code>&lt;install_dir&gt;/agent/agent.config</code>.</p>
+<p>+-----------------------------------+-----------------------------------+
+| Parameter Name                    | Explanation                       |
++===================================+===================================+
+| <code>max_dynamic_log_rate</code>            | Number of log prints per second   |
+|                                   | (on average).                     |
++-----------------------------------+-----------------------------------+
+| <code>max_dynamic_log_bytes_rate</code>      | Number of bytes per second (on    |
+|                                   | average).                         |
++-----------------------------------+-----------------------------------+
+| <code>log_stats_time_micros</code>           | How often to log debugger         |
+|                                   | performance stats.                |
++-----------------------------------+-----------------------------------+
+| <code>max_condition_cost</code>              | Maximum cost in percentage of CPU |
+|                                   | consumption of condition          |
+|                                   | evaluation.                       |
++-----------------------------------+-----------------------------------+
+| <code>max_log_cpu_cost</code>                | Maximum cost of dynamic logging   |
+|                                   | in percentage of CPU consumption  |
+|                                   | (short bursts are allowed).       |
++-----------------------------------+-----------------------------------+
+| <code>max_snapshot_buffer_size</code>        | The total size in bytes we allow  |
+|                                   | to evaluate when capturing a      |
+|                                   | snapshot                          |
++-----------------------------------+-----------------------------------+
+| <code>max_snapshot_frame_count</code>        | Max frame count we allow to       |
+|                                   | collect data from when capturing  |
+|                                   | a snapshot                        |
++-----------------------------------+-----------------------------------+
+| <code>breakpoint_expiration_sec</code>       | Breakpoint \ Dynamic log         |
+|                                   | expiration in seconds.            |
++-----------------------------------+-----------------------------------+
+| <code>dynamic_log_quota_recovery_ms</code>   | Time to pause dynamic log after   |
+|                                   | it runs out of quota.             |
++-----------------------------------+-----------------------------------+
+| <code>no_check_certificate</code>            | Disable certificate pinning when  |
+|                                   | accessing the backend             |
++-----------------------------------+-----------------------------------+
+| <code>ignore_quota</code>                    | Disable all performance safe      |
+|                                   | guards when evaluating a          |
+|                                   | breakpoint. <strong>Not Recommended</strong>   |
++-----------------------------------+-----------------------------------+
+| <code>exceptions_monitoring_enabled</code>   | Enable the capturing of the       |
+|                                   | application's exceptions          |
++-----------------------------------+-----------------------------------+
+| <code>exceptions_monitoring_stdout</code>    | Print all of the captured         |
+|                                   | exceptions to the standard output |
++-----------------------------------+-----------------------------------+
+| <code>exceptions_report_percentage</code>    | Process and report only this      |
+|                                   | percentage of the exceptions      |
+|                                   | thrown by the debuggee (A float   |
+|                                   | between 0 and 1.0).               |
++-----------------------------------+-----------------------------------+
+| <code>exceptions_should_report_caught</code> | Report exceptions that were       |
+|                                   | caught by the application as well |
+|                                   | as exceptions that remained       |
+|                                   | uncaught                          |
++-----------------------------------+-----------------------------------+
+| <code>exceptions_max_buffer_size</code>      | The total size in bytes we allow  |
+|                                   | to evaluate when capturing an     |
+|                                   | excpetion (Same as snapshot)      |
++-----------------------------------+-----------------------------------+
+| <code>ex | Max frame count we allow to | | ceptions_stack_trace_frame_count</code> | collect data from when capturing  |
+|                                   | an excpetion (Same as snapshot)   |
++-----------------------------------+-----------------------------------+
+| <code>enable_pii_redaction</code>            | Enable PII redaction in the       |
+|                                   | agent's side (may have an effect  |
+|                                   | on the application's performance) |
++-----------------------------------+-----------------------------------+</p>
+<h3><a class="anchor" aria-hidden="true" id="agent-command-line-arguments-_agent_command_line_arguments"></a><a href="#agent-command-line-arguments-_agent_command_line_arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Agent Command line arguments {#_agent_command_line_arguments}</h3>
+<p>Some configurations can be changed with a command line argument. The
+command line args come after the agent's path and are separated by a
+comma:
+<code>`-agentpath:&lt;path-to-agent&gt;/lightrun_agent.so=--lightrun_wait_for_init,--lightrun_init_wait_time_ms=5000`</code></p>
+<p>+----------------------+----------------------+-----------------------+
+| Parameter Name       | Explanation          | Type                  |
++======================+======================+=======================+
+| <code>hub_retry_delay_ms</code> | amount of time in    | int32                 |
+|                      | milliseconds to      |                       |
+|                      | sleep before         |                       |
+|                      | retrying failed      |                       |
+|                      | requests to backend  |                       |
++----------------------+----------------------+-----------------------+
+| <code>debugge | amount of time in | int32 | | e_disabled_delay_ms</code> | milliseconds to      |                       |
+|                      | sleep before         |                       |
+|                      | checking whether the |                       |
+|                      | debugger was enabled |                       |
+|                      | back                 |                       |
++----------------------+----------------------+-----------------------+
+| <code>lightr | additional | string | | un_extra_class_path</code> | directories and      |                       |
+|                      | files containing     |                       |
+|                      | resolvable binaries  |                       |
++----------------------+----------------------+-----------------------+
+| <code>lightru | timeout for wait if | int32 | | n_init_wait_time_ms</code> | li                   |                       |
+|                      | ghtrun_wait_for_init |                       |
+|                      | is set               |                       |
++----------------------+----------------------+-----------------------+
+| <code>lig | Block application | bool | | htrun_wait_for_init</code> | until first time of  |                       |
+|                      | fetching breakpoints |                       |
+|                      | from the server      |                       |
++----------------------+----------------------+-----------------------+
+| <code>enable_safe_caller</code> | Allows any method    | bool                  |
+|                      | without side effects |                       |
+|                      | in expressions       |                       |
++----------------------+----------------------+-----------------------+
+| <code>ex | Additional methods | string | | tra_blocked_methods</code> | to block for testing |                       |
+|                      | purposes             |                       |
++----------------------+----------------------+-----------------------+
+| <code>ex | Additional methods | string | | tra_allowed_methods</code> | to allowed for       |                       |
+|                      | testing purposes     |                       |
++----------------------+----------------------+-----------------------+
+| <code>extra_ | Internal names of | string | | whitelisted_classes</code> | additional classes   |                       |
+|                      | to allow for testing |                       |
+|                      | purposes             |                       |
++----------------------+----------------------+-----------------------+
+| <code>expression_max | Maximum number of | int32 | | _classes_load_quota</code> | classes that the     |                       |
+|                      | NanoJava interpreter |                       |
+|                      | is allowed to load   |                       |
+|                      | while evaluating a   |                       |
+|                      | single breakpoint    |                       |
+|                      | expression           |                       |
++----------------------+----------------------+-----------------------+
+| <code>expres | Maximum number of | int32 | | sion_max_interpreter | instructions that | | | _instructions_quota</code> | the NanoJava         |                       |
+|                      | interpreter is       |                       |
+|                      | allowed to execute   |                       |
+|                      | while evaluating a   |                       |
+|                      | single breakpoint    |                       |
+|                      | expression           |                       |
++----------------------+----------------------+-----------------------+
+| <code>pretty_printers_max | Maximum number of | int32 | | _classes_load_quota</code> | classes that the     |                       |
+|                      | NanoJava interpreter |                       |
+|                      | is allowed to load   |                       |
+|                      | while formatting     |                       |
+|                      | some well known data |                       |
+|                      | structures           |                       |
++----------------------+----------------------+-----------------------+
+| <code>pretty_prin | Maximum number of | int32 | | ters_max_interpreter | instructions that | | | _instructions_quota</code> | the NanoJava         |                       |
+|                      | interpreter is       |                       |
+|                      | allowed to execute   |                       |
+|                      | while formatting     |                       |
+|                      | some well known data |                       |
+|                      | structures           |                       |
++----------------------+----------------------+-----------------------+
+| <code>dynamic_log_max | Maximum number of | int32 | | _classes_load_quota</code> | classes that the     |                       |
+|                      | NanoJava interpreter |                       |
+|                      | is allowed to load   |                       |
+|                      | while evaluating all |                       |
+|                      | expressions in a     |                       |
+|                      | single dynamic log   |                       |
+|                      | statement            |                       |
++----------------------+----------------------+-----------------------+
+| <code>dynamic | Maximum number of | int32 | | _log_max_interpreter | instructions that | | | _instructions_quota</code> | the NanoJava         |                       |
+|                      | interpreter is       |                       |
+|                      | allowed to execute   |                       |
+|                      | while evaluating all |                       |
+|                      | expressions in a     |                       |
+|                      | single dynamic log   |                       |
++----------------------+----------------------+-----------------------+
+| <code>safe_caller | Maximum allowed size | int32 | | _max_array_elements</code> | of the array to copy |                       |
+|                      | or allocate in safe  |                       |
+|                      | caller (copying or   |                       |
+|                      | allocating larger    |                       |
+|                      | arrays is considered |                       |
+|                      | to be too expensive  |                       |
+|                      | MISSING              |                       |
++----------------------+----------------------+-----------------------+
+| <code>| Maximum stack depth | int32 | | safe_caller_max_inte | that safe caller | | | rpreter_stack_depth</code> | will allow           |                       |
++----------------------+----------------------+-----------------------+
+| <code>cdbg | additional text to | string | | _description_suffix</code> | be appended to       |                       |
+|                      | debuggee description |                       |
++----------------------+----------------------+-----------------------+
+| <code>cdbg_cla | Cache size for class | int32 | | ss_files_cache_size</code> | files used in safe   |                       |
+|                      | method caller        |                       |
++----------------------+----------------------+-----------------------+
+| <code>cdbg_ma | Use this value when | int32 | | x_instructions_high</code> | ignoring quota       |                       |
++----------------------+----------------------+-----------------------+
+| <code>c | Maximum number of | int32 | | dbg_max_stack_depth</code> | stack frames to      |                       |
+|                      | unwind               |                       |
++----------------------+----------------------+-----------------------+</p>
+<h3><a class="anchor" aria-hidden="true" id="metrics-_metrics"></a><a href="#metrics-_metrics" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Metrics {#_metrics}</h3>
+<p>The agent runs alongside a production application. Hence, it's crucial
+to monitor and collect important metrics about the overhead of the
+agent.</p>
+<p>The agent prints to it's own log file (usually
+<code>/tmp/lightrun_java_agent.INFO</code>) statistics every
+<code>log_stats_time_micros</code> microseconds.</p>
+<p>Listed below are some reported metrics based on the agents logfile.</p>
+<h4><a class="anchor" aria-hidden="true" id="statsd-_statsd"></a><a href="#statsd-_statsd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>StatsD {#_statsd}</h4>
+<p>Statsd is a network deamon listens for statistics over UDP or TCP and
+aggregates the data into different backends (e.g Graphite).</p>
+<p>There's a short script that performs on-line metric scraping from agent
+log file (usually <code>/tmp/lightrun_java_agent.INFO</code>).</p>
+<pre><code class="hljs css language-{.bash}"><span class="hljs-keyword">cd</span> <span class="hljs-symbol">&lt;install-dir&gt;</span>/agent/stats/
+./statsd_reporter.<span class="hljs-keyword">py</span> --host <span class="hljs-symbol">&lt;statsd-hostname&gt;</span> --port <span class="hljs-symbol">&lt;statsd-port&gt;</span> --logfile &lt;agent-<span class="hljs-built_in">log</span>-<span class="hljs-keyword">file</span>.txt&gt;
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/server"><span class="arrow-prev">← </span><span>Setting up the Lightrun Backend</span></a><a class="docs-next button" href="/docs/exceptions"><span>Monitoring exceptions</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#tagging-_tagging">Tagging {#_tagging}</a></li><li><a href="#customization-_customization">Customization {#_customization}</a><ul class="toc-headings"><li><a href="#dynamic-logger-_dynamic_logger">Dynamic Logger {#_dynamic_logger}</a></li><li><a href="#agent-config-_agent_config">Agent Config {#_agent_config}</a></li><li><a href="#agent-command-line-arguments-_agent_command_line_arguments">Agent Command line arguments {#_agent_command_line_arguments}</a></li><li><a href="#metrics-_metrics">Metrics {#_metrics}</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/company-logo1.png" alt="Lightrun Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/introduction.html">Lightrun documentation</a><a href="/docs/tutorial.html">Quick start tutorial</a><a href="/docs/server.html">Setting up the server</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Lightrun</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'V19CDPVNMV',
+                apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
+                indexName: 'lightrun-docs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
