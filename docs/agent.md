@@ -298,7 +298,7 @@ Listed below are some reported metrics based on the agents logfile.
 
 #### StatsD {#_statsd}
 
-Statsd is a network deamon listens for statistics over UDP or TCP and
+<code>Statsd</code> is a network deamon listens for statistics over UDP or TCP and
 aggregates the data into different backends (e.g Graphite).
 
 There's a short script that performs on-line metric scraping from agent
