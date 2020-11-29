@@ -8,10 +8,7 @@
 	"Integrations": ["integrations","serveintegrations"],
 	"Troubleshooting": ["troubleshooting"],
 	"Lightrun license use": ["licenses"]
-  },
-  
- 
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
   }
+  
+
 }

@@ -2,17 +2,14 @@
 id: installation
 title: Installation
 ---
-
 Installation
 ==============================
 
-Lightrun consists of three main components:
+Lightrun comprises these main components:
 
-1.  Management Server
-
-2.  Agent
-
-3.  Client - CLI and Plugin
+- Management Server
+- Agent
+- Client - CLI and Plugin
 
 Once the backend is installed we can create a user account. We can then
 login with this new account and follow the instructions to install the
@@ -29,7 +26,7 @@ exception for this URL. SSL certificates can be applied to domains only
 and will produce a warning for in-house servers!
 :::
 
-Management Server Deployment - Docker Compose {#_management_server_deployment_docker_compose}
+Management Server Deployment - Docker Compose
 ---------------------------------------------
 
 Lightrun's management server works best in a container environment.
@@ -49,7 +46,7 @@ docker-compose up -d
 In case port 8080 is already taken, we can change the port number in the
 docker-compose file.
 
-Agent Deployment {#_agent_deployment}
+Agent Deployment
 ----------------
 
 The agent can be downloaded from the backend server page once we login
@@ -75,7 +72,7 @@ Check out the content of the file `agent/agent.config`. It includes many
 setting options including the backend server URL
 :::
 
-### Attaching the Agent {#_attaching_the_agent}
+### Attaching the Agent
 
 Now we add the agent to the java application by changing the command
 line as such:
@@ -94,8 +91,21 @@ export JAVA_OPTS=-agentpath:/path/to/agent/lightrun_agent.so
 
 Once an agent is running we can move to the IntelliJ plugin
 installation.
+The compiler may miss some debugging information in order to reduce the binary size. For that reason, not all variables are visible for exploration.
 
-Plugin Installation {#_plugin_installation}
+We strongly **recommend** that you enhance this information. To do this, add the`-g` flag to the compilation command.
+
+If the project uses Maven, add the following lines to the `pom.xml` file:
+
+``` {.xml}
+<compilerArgs>
+    <arg>-g:source,lines</arg>
+</compilerArgs>
+```
+
+This flag has no impact on compiler optimization, but only enhances the bytecode with additional debug information. As such, the performance of the app is not effected.
+
+Plugin Installation
 -------------------
 
 To install the plugin download the plugin zip from the Lightrun backend.
