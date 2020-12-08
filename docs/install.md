@@ -2,64 +2,38 @@
 id: installation
 title: Installation
 ---
-Installation
-==============================
+When you're ready to get rolling, Lightrun sets up the backend server for you and issues an admin account. Thereafter, you can: 
+- [Spin the server up and down](installation#spin-the-server-up-and-down)
+- [Log in to Lightrun](installation#log-in-to-lightrun)
+- [Deploy the application server-side agent](installation#deploy-the-application-server-side-agent)
 
-Lightrun comprises these main components:
+## Spin the server up and down
 
-- Management Server
-- Agent
-- Client - CLI and Plugin
+You can run the backend server on any host using a docker-compose or other container orchestration tool such as Kubernetes, Docker Swarm or Rancher.  
 
-Once the backend is installed we can create a user account. We can then
-login with this new account and follow the instructions to install the
-agent, plugin and CLI.
-
-::: {.tip}
-The backend defaults to port 8080 and requires HTTPS so the URL should
-look like <https://192.168.1.108:8080/>
-:::
-
-::: {.important}
-We will receive an HTTPS warning in the browser and will need to add an
-exception for this URL. SSL certificates can be applied to domains only
-and will produce a warning for in-house servers!
-:::
-
-Management Server Deployment - Docker Compose
----------------------------------------------
-
-Lightrun's management server works best in a container environment.
-Running Lightrun is as easy as running a single command from the
-terminal. We can run the backend server on any host using docker-compose
-or other container orchestration tool such as Kubernetes, Docker Swarm
-or Rancher etc.
-
-The easiest way to deploy the server is to run the docker-compose file.
-Copy the two `yml` files provided into an empty directory and execute:
+1. By default, the backend is configured to run over port 8080. If this port is unavailable, change the port number from the docker-compose file.
+2. Copy the two `yml` files that Lightrun provided at installation into an empty directory and execute the following:
 
 ``` {.bash}
 cd {docker-compose-directory}
 docker-compose up -d
 ```
 
-In case port 8080 is already taken, we can change the port number in the
-docker-compose file.
+## Log in to Lightrun
 
-Agent Deployment
-----------------
+1. The backend installed by Lightrun defaults to port 8080 and requires HTTPS. Log in to your Lightrun instance with your admin credentials at <https://192.168.1.108:8080/>. 
+   
+   **Note:** Be sure to change the port number if you changed the configuration from your docker-compose file. 
+   
+   **Note:** SSL certificates can be applied to domains only. Therefore, the page loads with an HTTPS warning. 
+2. Add an exception for this URL in order to bypass the certificate warning that loads. 
+   The landing page loads with *customized* installation instructions for the agent, plugin and CLI.
 
-The agent can be downloaded from the backend server page once we login
-to the backend.
+## Deploy the agent
 
-In order to use the agent in an app, download and extract the zip in the
-apps server.
+Once you've logged in to the backend server, the agent can be downloaded and deployed on your application servers.
 
-::: {.important}
-The following code is available in the backend welcome page and should
-be copied from there as the `server-ip` and port value will be set
-correctly
-:::
+Copy the following code *from the welcome page* which loads with the customized `server IP` and `port` values when you log in. 
 
 ``` {.bash}
 wget --no-check-certificate https://server-ip:8080/content/files/agent.zip&host=server-ip&port=8080 -O agent.zip
@@ -67,64 +41,27 @@ mkdir agent
 unzip agent.zip -d agent
 ```
 
-::: {.tip}
-Check out the content of the file `agent/agent.config`. It includes many
-setting options including the backend server URL
-:::
+**Tip:** Check out the content of the file `agent/agent.config`. It includes many options, including the backend server URL.
 
-### Attaching the Agent
+## Attach the Agent
 
-Now we add the agent to the java application by changing the command
-line as such:
+Once you've deployed the agent to your application servers, you should add it to your application as follows: 
 
+**Note:** Lightrun currently supports Java applications.
+
+1. From the application server, navigate to the folder where your application resides. 
+2. Copy the following code:
 ``` {.bash}
 java -agentpath:/path/to/agent/lightrun_agent.so RestOfTheArgumentsHere
 ```
+3. Replace the `agentpath` value with the path to the Lightrun agent where you downloaded it and replace `RestOfTheArgumentsHere` with the name of your application and then run the command. 
 
-Alternatively we can add the `JAVA_OPTS` environment variable to the
-server so all java processes launched in the server would have an agent
-attached as such:
+   OR
+
+   Add the `JAVA_OPTS` environment variable to the server so that all Java processes launched on that server have an agent attached. Copy the following command from the server and replace the `agentpath` value with the path to the Lightrun agent where you downloaded it:
 
 ``` {.bash}
 export JAVA_OPTS=-agentpath:/path/to/agent/lightrun_agent.so
 ```
 
-Once an agent is running we can move to the IntelliJ plugin
-installation.
-The compiler may miss some debugging information in order to reduce the binary size. For that reason, not all variables are visible for exploration.
-
-We strongly **recommend** that you enhance this information. To do this, add the`-g` flag to the compilation command.
-
-If the project uses Maven, add the following lines to the `pom.xml` file:
-
-``` {.xml}
-<compilerArgs>
-    <arg>-g:source,lines</arg>
-</compilerArgs>
-```
-
-This flag has no impact on compiler optimization, but only enhances the bytecode with additional debug information. As such, the performance of the app is not effected.
-
-Plugin Installation
--------------------
-
-To install the plugin download the plugin zip from the Lightrun backend.
-
-::: {.important}
-Don't unzip the file!
-:::
-
-Open IntelliJ's preferences:
-
-![IntelliJ Preferences Menu on Mac OS](img/intellij-preferences-mac.png)
-
-Select the plugins section in the preferences menu:
-
-![The plugins section](img/plugins-section.png)
-
-Click the settings button on the right most point and select *Install
-Plugin from Disk*:
-
-![Install Plugin from Disk](img/install-plugin.png)
-
-Then select the zip file for the plugin from the download folder.
+Once an agent is up and running, you and your team can install the IntelliJ plugin.

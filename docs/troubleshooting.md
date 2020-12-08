@@ -31,7 +31,7 @@ Try:
 
 ![Notification warning - \"Lightrun actions in this file were submitted
 against a different
-version...​\"](img/source-version-warning-notification.png)
+version...​\"](../../img/source-version-warning-notification.png)
 
 This notification warning pops up when one or more actions in the open
 file were set against different source code. This might happen if you

@@ -2,27 +2,21 @@
 id: agent
 title: Agent
 ---
-
 Agent {#_agent}
 =====
 
-The agent is at the core of Lightrun. Setting up agents is the most
-important task once the backend is in place.
+The agent is at the core of Lightrun. Setting up agents is the most important task once the backend is in place.
 
 ::: {.tip}
-For elaborate agent setups please check out the [Agent
-Integrations](integration.xml#integrations).
+For elaborate agent setups please check out the [Agent Integrations](integration.xml#integrations).
 :::
 
 Tagging {#_tagging}
 -------
 
-Tagging lets us group agents together for common functionality under a
-meaningful name. E.g. Database Servers, Staging, 18GB Machines etc.
+Tagging lets us group agents together for common functionality under a meaningful name. E.g. Database Servers, Staging, 18GB Machines etc.
 
-We can use any set of tags to define an agent. This would allow binding
-actions to an agent even before it was launched as well as applying an
-action to a cross section of servers.
+We can use any set of tags to define an agent. This would allow binding actions to an agent even before it was launched as well as applying an action to a cross section of servers.
 
 We tag an agent by editing the file `agent.metadata.json` e.g.:
 
@@ -47,14 +41,10 @@ We tag an agent by editing the file `agent.metadata.json` e.g.:
 We can add/remove entries within the \"tags\" section.
 
 ::: {.note}
-Changes to this file aren't detected dynamically. An agent restart would
-be required
+Changes to this file aren't detected dynamically. An agent restart would be required
 :::
 
-Once we bind an action to a tag it will be added implicitly to the
-tagged agents. This can be useful for many cases. E.g. integration tests
-can execute with a specific tag, that lets us debug an integration test
-failure by binding an action based on a tag.
+Once we bind an action to a tag it will be added implicitly to the tagged agents. This can be useful for many cases. E.g. integration tests can execute with a specific tag, that lets us debug an integration test failure by binding an action based on a tag.
 
 Tags can also be defined in the command line e.g.
 

@@ -21,51 +21,44 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Lightrun Documentation', // Title for your website.
-  tagline: 'The shift-left observability debugging tool made for developers',
-  url: 'https://spinningrachel.github.io/' /* your website url */,
-  editUrl: 'https://github.com/spinningrachel/',
-  baseUrl: '/docs.lightrun.com/' /* base url for your project */,
+  title: 'Test Site', // Title for your website.
+  tagline: 'A website for testing',
+  url: 'https://your-docusaurus-test-site.com', // Your website URL
+  baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'docs.lightrun.com',
-  organizationName: 'spinningrachel',
+  projectName: 'test-site',
+  organizationName: 'facebook',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'introduction', label: 'Documentation'},
+    {doc: 'introduction', label: 'Docs'},
+    {doc: 'introduction', label: 'API'},
     {page: 'help', label: 'Help'},
-    {blog: true, label: 'FAQ'},
-    {changeLog: 'changeLog', label: 'Change Log'}
+    {blog: true, label: 'Blog'},
   ],
 
   // If you have users set above, you add it here:
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/company-logo1.png',
-  footerIcon: 'img/company-logo1.png',
+  headerIcon: 'img/favicon.ico',
+  footerIcon: 'img/favicon.ico',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#02053e',
-    secondaryColor: '#1c3d6d',
+    primaryColor: '#523c9d',
+    secondaryColor: '#392a6d',
   },
 
-   algolia: {
-    apiKey: '6f29b18a4bf20e29b5b5b254cb526500',
-    indexName: 'lightrun-docs',
-    appId: 'V19CDPVNMV', // Optional, if you run the DocSearch crawler on your own
-    algoliaOptions: {} // Optional, if provided by Algolia
-   },
-	/* Custom fonts for website */
+  /* Custom fonts for website */
   /*
   fonts: {
     myFont: [
@@ -80,7 +73,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Lightrun`,
+  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.

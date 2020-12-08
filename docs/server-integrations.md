@@ -16,7 +16,7 @@ panel (*Manager* → *System Integrations*)
 Manager role is required to edit integrations\"
 :::
 
-![Integrations Page](img/integrations.png)
+![Integrations Page](../../img/integrations.png)
 
 ::: {.note}
 To see an agent data sent to any of the configured integration, please
@@ -26,7 +26,7 @@ make sure it's piping status is set to either \"Plugin\" or \"Both\".
 Statsd {#_statsd}
 ------
 
-![StatsD Configuration](img/statsd.png)
+![StatsD Configuration](../../img/statsd.png)
 
 1.  Press \"Connect\" button on Statsd configuration widget
 
@@ -41,7 +41,7 @@ Statsd {#_statsd}
 Prometheus {#_prometheus}
 ----------
 
-![Prometheus Configuration](img/prometheus.png)
+![Prometheus Configuration](../../img/prometheus.png)
 
 1.  Press \"Connect\" button on Prometheus configuration widget
 
@@ -56,7 +56,7 @@ Prometheus {#_prometheus}
 Datadog {#_datadog}
 -------
 
-![Datadog Configuration](img/datadog.png)
+![Datadog Configuration](../../img/datadog.png)
 
 1.  Press \"Connect\" button on Datadog configuration widget
 
@@ -70,7 +70,7 @@ Datadog {#_datadog}
 Logz.io {#_logz_io}
 -------
 
-![Logz.io Configuration](img/logzio.png)
+![Logz.io Configuration](../../img/logzio.png)
 
 1.  Press \"Connect\" button on Logz.io configuration widget
 

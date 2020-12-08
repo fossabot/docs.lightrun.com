@@ -1,14 +1,14 @@
 {
   "docs": {
-    "Getting Started": ["introduction", "installation", "tutorial"],
-	"Using Lightrun": ["plugin"],
-    "Lightrun Administration": ["server"],
-    "Working with Agents": ["agent", "exceptions"],
-	"CLI Reference": ["cli"],
-	"Integrations": ["integrations","serveintegrations"],
-	"Troubleshooting": ["troubleshooting"],
-	"Lightrun license use": ["licenses"]
+    "Introduction": ["introduction"],
+    "Quick start for administration":["installation", "server-setup"],
+    "Quick start for users": ["install-client"],
+    "Debug with Lightrun": ["plugin","exceptions","cli"],
+    "Manage and administer": ["demo","agent","backend","cli-manage","troubleshooting"],
+    "Integrations": ["integration","server-integrations"],
+    "About and thanks": ["opensource"]
+  },
+  "docs-other": {
+    "First Category": ["doc4", "doc5"]
   }
-  
-
 }

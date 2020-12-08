@@ -6,8 +6,7 @@ title: Using Lightrun in your workflow
 Plugin - User Guide {#_plugin_user_guide}
 ===================
 
-This section provides an overview of the features available in
-Lightrun's IntelliJ plugin.
+This section provides an overview of the features available in Lightrun's IntelliJ plugin.
 
 Logging In {#_logging_in}
 ----------
@@ -16,7 +15,7 @@ After installing Lightrun we can expand the side drawer by clicking on
 it. We can then login from the IDE using either the button on the top of
 the side drawer or the right click menu option:
 
-![Launch the Login Dialog](img/login-guide.jpg)
+![Launch the Login Dialog](../../img/login-guide.jpg)
 
 ::: {.note}
 Before logging-in we need to register in the backend server web UI
@@ -24,17 +23,17 @@ Before logging-in we need to register in the backend server web UI
 
 This triggers the following login dialog:
 
-![Login Dialog](img/login-dialog.png)
+![Login Dialog](../../img/login-dialog.png)
 
 Once we log in successfully the status button on the top right corner
 should turn green:
 
-![Status Button](img/login-success.png)
+![Status Button](../../img/login-success.png)
 
 At this point the right click context menu changes and should include
 additional options as such:
 
-![Right Click Context Menu](img/context-menu.png)
+![Right Click Context Menu](../../img/context-menu.png)
 
 Usage {#_usage}
 -----
@@ -47,7 +46,7 @@ backend and no tags
 On the right side we see the Lightrun side drawer. It includes a tree of
 agents/tags and the actions connected to them:
 
-![The Lightrun Drawer](img/drawer.png)
+![The Lightrun Drawer](../../img/drawer.png)
 
 ::: {.tip}
 This drawer can be folded to save screen real estate
@@ -55,13 +54,13 @@ This drawer can be folded to save screen real estate
 
 The drawer includes all the high level information you might need:
 
-![Search](img/search-annotated.jpg)
+![Search](../../img/search-annotated.jpg)
 
 We can search within agents and action below and the list updates
 immediately based on the search query. When we have multiple logs on
 multiple agents this can be very useful.
 
-![Agent Details](img/agent-annotated.jpg)
+![Agent Details](../../img/agent-annotated.jpg)
 
 We have multiple indicators and capabilities for every agent. Most of
 these are applicable for actions under tags as well so we'll focus only
@@ -99,11 +98,11 @@ on the agent here:
 When we press the details button on an agent we can see the following
 dialog with details about the piping mode, tags etc:
 
-![Agent Info](img/agent-info.png)
+![Agent Info](../../img/agent-info.png)
 
 This is the equivalent dialog for a log entry:
 
-![Action Info](img/action-info.png)
+![Action Info](../../img/action-info.png)
 
 ### Adding an Action {#_adding_an_action}
 
@@ -111,7 +110,7 @@ All actions are added via the right click menu. Select a specific line
 in the code, right click and select the appropriate action e.g. Log as
 shown here:
 
-![Add a Log](img/new-log.png)
+![Add a Log](../../img/new-log.png)
 
 There are several options in the new/edit log dialog:
 
@@ -133,7 +132,7 @@ There are several options in the new/edit log dialog:
 
 Once we press OK a log is added to the area above the line:
 
-![Log Entry](img/log-entry.png)
+![Log Entry](../../img/log-entry.png)
 
 ::: {.tip}
 The picture on the left can be customized the at
@@ -151,7 +150,7 @@ logs.
 A snapshot is a one time \"breakpoint\" that doesn't block. It just
 grabs the stack trace and variables then proceeds on its way.
 
-![Adding a Snapshot](img/add-snapshot.png)
+![Adding a Snapshot](../../img/add-snapshot.png)
 
 Format and log level aren't needed in snapshots so they're unavailable
 here. However, we have the expression list which lets us pick
@@ -159,12 +158,12 @@ expressions we wish to add to the snapshot.
 
 The added snapshot is displayed in the gutter on the left side:
 
-![Snapshot Icon](img/snapshot-gutter.png)
+![Snapshot Icon](../../img/snapshot-gutter.png)
 
 When the snapshot receives a hit it's shown in the bottom area of the
 window in the *Lightrun Snapshots* area.
 
-![Snapshot Result](img/snapshot.png)
+![Snapshot Result](../../img/snapshot.png)
 
 The snapshot result should be familiar to IntelliJ users as it's based
 on the design of the debugger UI. The navigable stack trace is on the
@@ -184,7 +183,7 @@ problems.
 Counter does just that. It counts every time the given line was reached
 and periodically logs that information to the standard logger.
 
-![Adding a Counter](img/counter.png)
+![Adding a Counter](../../img/counter.png)
 
 A counter doesn't have a format but it has a name which is used to in
 the printouts to distinguish one counter from another.
@@ -210,7 +209,7 @@ When adding a set-value action we define a left side argument which is
 the variable name and a right side element which is the value assigned.
 The latter can be any valid expression including a method invocation.
 
-![Adding a Set-Value](img/set-value.png)
+![Adding a Set-Value](../../img/set-value.png)
 
 ::: {.important}
 Quotas aren't imposed on set-value operations and as such the
@@ -229,13 +228,13 @@ However, in some cases a developer might want to see the log output in
 the IDE. For that we have the Lightrun Console at the bottom of the
 screen:
 
-![Lightrun Console](img/console.png)
+![Lightrun Console](../../img/console.png)
 
 Logs created by Lightrun can be redirected to the console where we can
 search and filter them. To do that we need to define log piping which we
 define on a per-agent basis.
 
-![Log Piping](img/log-piping.png)
+![Log Piping](../../img/log-piping.png)
 
 There are 3 levels of log piping:
 
